@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CovidASH.Views.MenuPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CovidASH.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:CovidASH.Models"
+    xmlns:viewmodel="clr-namespace:CovidASH.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:MenuViewModel"
+    BackgroundColor="{x:DynamicResource navigationPrimaryColor}"
+    Navigation="{x:Binding Navigation}"
+    Visual="Material"
+    mc:Ignorable="d">
+    <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="UWP" Value="ic_menu_black_48dp.png" />
+            <On Platform="iOS" Value="ic_menu_white_24pt.png" />
+        </OnPlatform>
+    </ContentPage.Icon>
+    <ContentPage.Resources>
+        <OnPlatform x:Key="TopPadding" x:TypeArguments="Thickness">
+            <On Platform="UWP" Value="0,20,0,4" />
+            <On Platform="iOS" Value="0,40,0,4" />
+            <On Platform="Android" Value="0,20,0,4" />
+        </OnPlatform>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.5" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="0.5" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.5" />
+        </Grid.ColumnDefinitions>
+        <ListView
+            x:Name="MenuListView"
+            Grid.Row="3"
+            BackgroundColor="{x:DynamicResource primaryColorLight}"
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+            ItemsSource="{x:Binding MenuItems}"
+            RefreshCommand="{x:Binding LoadMenuItemsCommand}"
+            SelectionMode="Single"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:HomeMenuItem">
+                    <!--<ViewCell ios:Cell.DefaultBackgroundColor="#0063B1">-->
+                    <controls:SelectableViewCell SelectedBackgroundColor="{x:DynamicResource primaryColorLight}">
+                        <Grid
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="{x:DynamicResource primaryColorLight}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.5" />
+                                <RowDefinition Height="12" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="12" />
+                                <RowDefinition Height="0.5" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="16" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="4" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                d:Text="{x:Binding .}"
+                                CharacterSpacing="1"
+                                FontSize="{x:DynamicResource BodyFontSize}"
+                                Text="{Binding Title}" />
+                            <BoxView
+                                Grid.Row="4"
+                                Grid.ColumnSpan="6"
+                                BackgroundColor="{x:DynamicResource secondaryColorLight}" />
+                        </Grid>
+                    </controls:SelectableViewCell>
+                    <!--</ViewCell>-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Frame
+            Grid.Row="5"
+            Margin="12"
+            BackgroundColor="OrangeRed"
+            CornerRadius="4">
+            <Grid ColumnSpacing="12">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenWebCommand}" CommandParameter="https://www.buymeacoffee.com/MichaelStgt" />
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0"
+                    FontSize="{x:DynamicResource SmallFontSize}"
+                    InputTransparent="True"
+                    Text="Buy me a coffee"
+                    TextColor="{x:DynamicResource navigationTextColor}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0"
+                    FontSize="{x:DynamicResource SmallFontSize}"
+                    InputTransparent="True"
+                    Text="Support this App, if you like it!"
+                    TextColor="{x:DynamicResource navigationTextColor}" />
+                <Image
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    HeightRequest="30"
+                    HorizontalOptions="Center"
+                    InputTransparent="True"
+                    Source="bmacwhite.png"
+                    VerticalOptions="Center"
+                    WidthRequest="22" />
+            </Grid>
+        </Frame>
+        <!--<Label Grid.Row="5" Text="Visit..." />-->
+
+        <BoxView
+            Grid.Row="0"
+            Grid.RowSpan="6"
+            Grid.Column="1"
+            BackgroundColor="{x:DynamicResource secondaryColorLight}" />
+        <BoxView
+            Grid.Row="2"
+            Grid.Column="0"
+            BackgroundColor="{x:DynamicResource secondaryColorLight}" />
+        <!--<BoxView
+            Grid.Row="4"
+            Grid.Column="0"
+            BackgroundColor="{x:DynamicResource secondaryColorLight}" />-->
+        <!--<ActivityIndicator
+            x:Name="LoadMenuItemsActivityIndicator"
+            Grid.Row="3"
+            IsRunning="{x:Binding IsBusy}"
+            IsVisible="{x:Binding IsBusy}"
+            VerticalOptions="Start"
+            Color="Red" />-->
+    </Grid>
+    <!--</StackLayout>-->
+
+</ContentPage>

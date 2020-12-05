@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="CovidASH.Styles.ExplicitStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+
+
+    <!--  Region TextElement  -->
+
+    <Style x:Key="BaseLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{x:DynamicResource primaryTextColor}" />
+        <Setter Property="Margin" Value="{x:DynamicResource TextElementMargin}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />-->
+        <Setter Property="FontSize" Value="{x:DynamicResource BodyFontSize}" />
+    </Style>
+
+    <Style
+        x:Key="BaseHeaderStyle"
+        BasedOn="{x:StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="Margin" Value="{x:DynamicResource TextElementMargin}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource LightFontFamily}" />-->
+        <Setter Property="TextColor" Value="{x:DynamicResource primaryTextColor}" />
+    </Style>
+
+    <Style
+        x:Key="H1LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H1FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource LightFontFamily}" />-->
+    </Style>
+
+    <Style
+        x:Key="H2LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H2FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource LightFontFamily}" />-->
+    </Style>
+
+    <Style
+        x:Key="H3LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H3FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />-->
+    </Style>
+    <Style
+        x:Key="H4LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H4FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />-->
+    </Style>
+    <Style
+        x:Key="H5LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H5FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />-->
+    </Style>
+    <Style
+        x:Key="H6LabelStyle"
+        BasedOn="{x:StaticResource BaseHeaderStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource H6FontSize}" />
+        <!--<Setter Property="FontFamily" Value="{x:DynamicResource MediumFontFamily}" />-->
+    </Style>
+    <Style
+        x:Key="BodyLabelStyle"
+        BasedOn="{x:StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource BodyFontSize}" />
+    </Style>
+
+    <Style
+        x:Key="SmallLabelStyle"
+        BasedOn="{x:StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource SmallFontSize}" />
+    </Style>
+
+    <Style
+        x:Key="MicroLabelStyle"
+        BasedOn="{x:StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{x:DynamicResource MicroFontSize}" />
+    </Style>
+
+    <Style x:Key="BaseSpanStyle" TargetType="Span">
+        <Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />
+    </Style>
+
+    <Style
+        x:Key="H5SpanStyle"
+        BasedOn="{x:StaticResource BaseSpanStyle}"
+        TargetType="Span">
+        <Setter Property="FontSize" Value="{x:DynamicResource H5FontSize}" />
+        <Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />
+    </Style>
+
+    <Style
+        x:Key="BodySpanStyle"
+        BasedOn="{x:StaticResource BaseSpanStyle}"
+        TargetType="Span">
+        <Setter Property="FontSize" Value="{x:DynamicResource BodyFontSize}" />
+    </Style>
+
+    <Style
+        x:Key="SmallSpanStyle"
+        BasedOn="{x:StaticResource BaseSpanStyle}"
+        TargetType="Span">
+        <Setter Property="FontSize" Value="{x:DynamicResource SmallFontSize}" />
+    </Style>
+
+    <Style x:Key="TileWrapper" TargetType="Frame">
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="BackgroundColor" Value="{x:DynamicResource primaryColor}" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+
+    <Style x:Key="SortImageStyle" TargetType="Image">
+        <Setter Property="Aspect" Value="AspectFill" />
+        <Setter Property="HeightRequest" Value="12" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Margin" Value="0,0,4,4" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="WidthRequest" Value="12" />
+    </Style>
+
+    <Style x:Key="HeaderLabelStyle" TargetType="Label">
+        <!--<Setter Property="FontSize" Value="{x:DynamicResource SmallFontSize}" />-->
+        <Setter Property="FontSize" Value="{x:DynamicResource MicroFontSize}" />
+        <Setter Property="Margin" Value="8,2,8,2" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <!--<Setter Property="TextColor" Value="LimeGreen" />-->
+    </Style>
+
+    <Style x:Key="TileValueLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="Montserrat-ExtraBold" />
+        <!--<Setter Property="FontSize" Value="{x:DynamicResource H6FontSize}" />-->
+        <Setter Property="FontSize" Value="{x:DynamicResource BodyFontSize}" />
+        <Setter Property="Margin" Value="8,2,8,2" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <!--<Setter Property="TextColor" Value="LimeGreen" />-->
+    </Style>
+</ResourceDictionary>

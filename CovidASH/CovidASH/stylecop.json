@@ -1,0 +1,41 @@
+﻿{
+  // ACTION REQUIRED: This file was automatically added to your project, but it
+  // will not take effect until additional steps are taken to enable it. See the
+  // following page for additional information:
+  //
+  // https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/EnableConfiguration.md
+
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "Behr, Michael",
+      "xmlHeader": true,
+      "copyrightText": "Copyright {companyName} 2018-2020.\nAll rights reserved.\nUse of this code is subject to the {licenseName}.\nSee {licenseFile} file in the project root for full license information.",
+      "variables": {
+        "licenseName": "terms of our license",
+        "licenseFile": "license.txt"
+      },
+      "indentation": {
+        "indentationSize": 4,
+        "useTabs": false
+      },
+      "orderingRules": {
+        "elementOrder": [
+          "kind",
+          "constant",
+          "accessibility",
+          "static",
+          "readonly"
+
+        ]
+      },
+      "maintainabilityRules": [
+        "class",
+        "interface",
+        "struct",
+        "enum",
+        "delegate"
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+﻿{
+  // ACTION REQUIRED: This file was automatically added to your project, but it
+  // will not take effect until additional steps are taken to enable it. See the
+  // following page for additional information:
+  //
+  // https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/EnableConfiguration.md
+
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "Egbakou, Kodjo Laurent (egbakou)",
+      "copyrightText": "https://github.com/egbakou/Covid19Tracker.NET",
+      "indentation": {
+        "indentationSize": 4,
+        "useTabs": false
+      },
+      "maintainabilityRules": [
+        "class",
+        "interface",
+        "struct",
+        "enum",
+        "delegate"
+      ],
+      "orderingRules": {
+        "elementOrder": [
+          "kind",
+          "constant",
+          "accessibility",
+          "static",
+          "readonly"
+
+        ]
+      },
+      "variables": {
+        "licenseName": "",
+        "licenseFile": ""
+      },
+      "xmlHeader": true
+    }
+  }
+}

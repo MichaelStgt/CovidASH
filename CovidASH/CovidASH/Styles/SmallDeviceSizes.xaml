@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="CovidASH.Styles.SmallDeviceSizes"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <OnIdiom
+        x:Key="H1FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="32"
+        Phone="24"
+        Tablet="32" />
+
+    <OnIdiom
+        x:Key="H2FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="24"
+        Phone="18"
+        Tablet="24" />
+
+    <OnIdiom
+        x:Key="H3FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="20"
+        Phone="14"
+        Tablet="20" />
+
+    <!--  This is the Default Fontsize!  -->
+    <OnIdiom
+        x:Key="BodyFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="16"
+        Phone="12"
+        Tablet="16" />
+
+    <OnIdiom
+        x:Key="SmallFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="14"
+        Phone="10"
+        Tablet="14" />
+
+    <OnIdiom
+        x:Key="MicroFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="12"
+        Phone="8"
+        Tablet="12" />
+
+    <OnIdiom
+        x:Key="PagePadding"
+        x:TypeArguments="Thickness"
+        Desktop="0"
+        Phone="0"
+        Tablet="0" />
+
+    <OnIdiom
+        x:Key="LayoutPadding"
+        x:TypeArguments="Thickness"
+        Desktop="8"
+        Phone="2"
+        Tablet="4" />
+
+    <OnIdiom
+        x:Key="LayoutMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8"
+        Phone="2"
+        Tablet="4" />
+
+    <OnIdiom
+        x:Key="LayoutSpacing"
+        x:TypeArguments="x:Double"
+        Desktop="8"
+        Phone="4"
+        Tablet="8" />
+    <OnIdiom
+        x:Key="BorderWidth"
+        x:TypeArguments="x:Double"
+        Desktop="0.5"
+        Phone="1"
+        Tablet="0.5" />
+
+    <OnIdiom
+        x:Key="TextElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8"
+        Phone="2"
+        Tablet="4" />
+
+    <OnIdiom
+        x:Key="HeaderedTextElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8,0,8,8"
+        Phone="2,0,2,2"
+        Tablet="4,0,4,4" />
+
+    <OnIdiom
+        x:Key="ListViewHighlightBoxSize"
+        x:TypeArguments="x:Double"
+        Desktop="120"
+        Phone="80"
+        Tablet="120" />
+</ResourceDictionary>

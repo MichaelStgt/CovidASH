@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CovidASH.Views.DashboardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:Covid19Tracker.Models;assembly=Covid19Tracker.NET"
+    xmlns:theming="clr-namespace:CovidASH.Styles"
+    xmlns:viewmodel="clr-namespace:CovidASH.ViewModels"
+    x:Name="BrowseItemsPage"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:DashboardViewModel"
+    Navigation="{x:Binding Navigation}"
+    Visual="Material"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="ChangeTheme"
+            Command="{x:Static theming:ThemeSettings.SwitchThemeModeCommand}"
+            Text="Change Theme">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.Platforms>
+                        <On Platform="UWP" Value="ic_brightness_medium_white_48dp.png" />
+                        <On Platform="iOS" Value="ic_brightness_medium_white_24pt.png" />
+                        <On Platform="Android" Value="ic_brightness_medium_white_24dp.png" />
+                    </OnPlatform.Platforms>
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout
+        Margin="0"
+        Padding="2"
+        Spacing="0">
+
+        <!--  Region Tiles  -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Region Cases  -->
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Total Cases" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.Cases, StringFormat='{0:N0}'}" />
+                    <Frame
+                        Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Margin="0"
+                        BackgroundColor="{x:DynamicResource primaryColorDark}"
+                        Opacity="0.9" />
+
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="8,8,8,2"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Today" />
+
+
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="8,2,8,8"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        FontSize="{x:DynamicResource H6FontSize}"
+                        Text="{Binding GlobalData.TodayCases, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>
+            <!--  EndRegion Cases  -->
+
+
+            <!--  Region Deaths  -->
+            <Frame
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Total Deaths" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="2"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.Deaths, StringFormat='{0:N0}'}" />
+                    <Frame
+                        Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Margin="0"
+                        BackgroundColor="{x:DynamicResource accentColor}"
+                        Opacity="0.9" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="16,8,8,2"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Today"
+                        TextColor="{x:DynamicResource navigationTextColor}" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="16,2,8,8"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        FontSize="{x:DynamicResource H6FontSize}"
+                        Text="{Binding GlobalData.TodayDeaths, StringFormat='{0:N0}'}"
+                        TextColor="{x:DynamicResource navigationTextColor}" />
+                </Grid>
+            </Frame>
+            <!--  EndRegion Deaths  -->
+
+            <!--  Region Cases per 1 Million  -->
+            <!--<Frame
+                Grid.Row="1"
+                Grid.Column="0"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Cases per 1 Million" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.CasesPerOneMillion, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>-->
+            <!--  EndRegion Cases per 1 Million  -->
+
+
+            <!--  Region Deaths per 1 Million  -->
+            <!--<Frame
+                Grid.Row="1"
+                Grid.Column="1"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Deaths per 1 Million" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.DeathsPerOneMillion, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>-->
+            <!--  EndRegion Deaths per 1 Million  -->
+
+            <!--  Region Recovered  -->
+            <Frame
+                Grid.Row="2"
+                Grid.Column="0"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Total Recovered" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.Recovered, StringFormat='{0:N0}'}" />
+                    <Frame
+                        Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Margin="0"
+                        BackgroundColor="{x:DynamicResource primaryColorDark}"
+                        Opacity="0.9" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="16,8,8,2"
+                        
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Today" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="16,2,8,8"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        FontSize="{x:DynamicResource H6FontSize}"
+                        Text="{Binding GlobalData.TodayRecovered, StringFormat='{0:N0}'}" />
+                </Grid>
+
+            </Frame>
+            <!--  EndRegion Recovered  -->
+
+            <!--  Region Active  -->
+            <Frame
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Total Active" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.Active, StringFormat='{0:N0}'}" />
+                    <Frame
+                        Grid.Row="2"
+                        Grid.RowSpan="2"
+                        Margin="0"
+                        BackgroundColor="{x:DynamicResource primaryColorDark}"
+                        Opacity="1" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="16,8,8,2"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Critical" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="16,2,8,8"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        FontSize="{x:DynamicResource H6FontSize}"
+                        Text="{Binding GlobalData.Critical, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>
+            <!--  EndRegion Active  -->
+
+            <!--  Region Recovered per 1 Million  -->
+            <!--<Frame
+                Grid.Row="3"
+                Grid.Column="0"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid VerticalOptions="Start">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Recovered per 1 Million" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        
+                        Text="{Binding GlobalData.RecoveredPerOneMillion, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>-->
+            <!--  EndRegion Recovered per 1 Million  -->
+
+            <!--  Region Active per 1 Million  -->
+            <!--<Frame
+                Grid.Row="3"
+                Grid.Column="1"
+                Style="{x:DynamicResource TileWrapper}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Active per 1 Million" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        Text="{Binding GlobalData.ActivePerOneMillion, StringFormat='{0:N0}'}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{x:DynamicResource HeaderLabelStyle}"
+                        Text="Critical per 1 Million" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        
+                        Style="{x:DynamicResource TileValueLabelStyle}"
+                        Text="{Binding GlobalData.CriticalPerOneMillion, StringFormat='{0:N0}'}" />
+                </Grid>
+            </Frame>-->
+            <!--  EndRegion Active per 1 Million  -->
+
+        </Grid>
+        <!--  EndRegion Tiles  -->
+
+        <!--  Region Table Header  -->
+        <Grid
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="2"
+            BackgroundColor="{x:DynamicResource primaryColorDark}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <!--<ColumnDefinition Width="10" />-->
+                <ColumnDefinition Width="1.4*" />
+                <ColumnDefinition Width="0.5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{x:DynamicResource HeaderLabelStyle}"
+                Text="Country Name" />
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_down}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="CountryNameDown">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_up}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="CountryNameUp">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <ContentView Grid.Row="0" Grid.Column="0">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding SortCommand}" CommandParameter="CountryName" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+            <BoxView Grid.Column="1" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="2"
+                Style="{x:DynamicResource HeaderLabelStyle}"
+                Text="Cases" />
+            <Image
+                Grid.Row="0"
+                Grid.Column="2"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_down}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="CasesDown">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image
+                Grid.Row="0"
+                Grid.Column="2"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_up}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="CasesUp">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <ContentView Grid.Row="0" Grid.Column="2">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding SortCommand}" CommandParameter="Cases" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+            <BoxView
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="4"
+                Style="{x:DynamicResource HeaderLabelStyle}"
+                Text="Recovered" />
+            <Image
+                Grid.Row="0"
+                Grid.Column="4"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_down}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="RecoveredDown">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image
+                Grid.Row="0"
+                Grid.Column="4"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_up}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="RecoveredUp">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <ContentView Grid.Row="0" Grid.Column="4">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding SortCommand}" CommandParameter="Recovered" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+            <BoxView Grid.Column="5" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="6"
+                Style="{x:DynamicResource HeaderLabelStyle}"
+                Text="Active" />
+            <Image
+                Grid.Row="0"
+                Grid.Column="6"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_down}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="ActiveDown">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image
+                Grid.Row="0"
+                Grid.Column="6"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_up}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="ActiveUp">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <ContentView Grid.Row="0" Grid.Column="6">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{x:Binding SortCommand}" CommandParameter="Active" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+            <BoxView Grid.Column="7" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="8"
+                Style="{x:DynamicResource HeaderLabelStyle}"
+                Text="Deaths" />
+            <Image
+                Grid.Row="0"
+                Grid.Column="8"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_down}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="DeathsDown">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Image
+                Grid.Row="0"
+                Grid.Column="8"
+                IsVisible="False"
+                Source="{x:DynamicResource ic_sort_up}"
+                Style="{x:DynamicResource SortImageStyle}"
+                VerticalOptions="End">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{x:Binding SortImageTrigger}"
+                        TargetType="Image"
+                        Value="DeathsUp">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <ContentView Grid.Row="0" Grid.Column="8">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{x:Binding SortCommand}"
+                        CommandParameter="Deaths"
+                        NumberOfTapsRequired="1" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+        </Grid>
+        <!--  EndRegion Table Header  -->
+
+        <!--  Region Table (content)  -->
+        <ListView
+            x:Name="CountriesListView"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+            ItemsSource="{Binding CountryDataCollection}"
+            RefreshCommand="{x:Binding LoadCountriesCommand}"
+            SelectionMode="Single"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:CountryData">
+                    <ViewCell>
+                        <Grid Margin="2,1" BackgroundColor="{x:DynamicResource primaryColor}">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{x:Binding Path=BindingContext.CountrySelectedCommand,
+                                                        Source={x:Reference CountriesListView}}"
+                                    CommandParameter="{x:Binding .}"
+                                    NumberOfTapsRequired="1" />
+                            </Grid.GestureRecognizers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="10" />-->
+                                <ColumnDefinition Width="1.4*" />
+                                <ColumnDefinition Width="0.5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.5" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.5" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--<Image
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HeightRequest="20"
+                                Source="{x:Binding CountryInfo.FlagUrl}"
+                                WidthRequest="30" />-->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Margin="8,2,8,2"
+                                FontFamily="Montserrat-Medium"
+                                FontSize="{x:DynamicResource SmallFontSize}"
+                                LineBreakMode="CharacterWrap"
+                                Text="{Binding CountryName}" />
+                            <BoxView Grid.Column="1" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="8,2,8,2"
+                                FontSize="{x:DynamicResource SmallFontSize}"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap"
+                                VerticalOptions="StartAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="All: " />
+                                        <Span Text="{Binding Cases, StringFormat='{0:N0}'}" />
+                                        <Span Text="{x:Static x:Environment.NewLine}" />
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="Today: " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            FontSize="{x:DynamicResource SamllFontSize}"
+                                            Text="{Binding TodayCases, StringFormat='{0:N0}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <BoxView
+                                Grid.RowSpan="1"
+                                Grid.Column="3"
+                                BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                Margin="8,2,8,2"
+                                FontSize="{x:DynamicResource SmallFontSize}"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap">
+                                <!--  Text="{Binding Recovered, StringFormat='{0:N0}'}"  -->
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="All: " />
+                                        <Span Text="{Binding Recovered, StringFormat='{0:N0}'}" />
+                                        <Span Text="{x:Static x:Environment.NewLine}" />
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="Today: " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            FontSize="{x:DynamicResource SamllFontSize}"
+                                            Text="{Binding TodayRecovered, StringFormat='{0:N0}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <BoxView Grid.Column="5" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="6"
+                                Margin="8,2,8,2"
+                                FontSize="{x:DynamicResource SmallFontSize}"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="NoWrap"
+                                Text="{Binding Active, StringFormat='{0:N0}'}" />
+                            <BoxView Grid.Column="7" BackgroundColor="{x:DynamicResource primaryColorLight}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="8"
+                                Margin="8,2,8,2"
+                                FontSize="{x:DynamicResource SmallFontSize}"
+                                HorizontalOptions="End"
+                                HorizontalTextAlignment="End"
+                                LineBreakMode="WordWrap"
+                                VerticalOptions="StartAndExpand">
+                                <!--  Text="{Binding Deaths, StringFormat='{0:N0}'}"  -->
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="All: " />
+                                        <Span Text="{Binding Deaths, StringFormat='{0:N0}'}" />
+                                        <Span Text="{x:Static x:Environment.NewLine}" />
+                                        <Span
+                                            FontFamily="Roboto-Light"
+                                            FontSize="{x:DynamicResource MicroFontSize}"
+                                            Text="Today: " />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            FontSize="{x:DynamicResource SamllFontSize}"
+                                            Text="{Binding TodayDeaths, StringFormat='{0:N0}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--  EndRegion Table (content)  -->
+
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Covid19Tracker.NET</AssemblyName>
+    <RootNamespace>Covid19Tracker.NET</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Kodjo Laurent Egbakou</Authors>
+    <Description>.NET wrapper library around the API provided by @NovelCovid https://github.com/NovelCovid/API for tracking the global coronavirus (COVID-19, SARS-CoV-2) outbreak.</Description>
+    <PackageProjectUrl>https://github.com/egbakou/Covid19Tracker.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/egbakou/Covid19Tracker.NET</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/egbakou/logos/master/Covid19Tracker.NET/covid-19_4.png?raw=true</PackageIconUrl>
+    <Version>2.0.2</Version>
+    <PackageReleaseNotes>See: https://github.com/egbakou/Covid19Tracker.NET </PackageReleaseNotes>
+    <PackageTags> dotnet-standard, covid19-tracker covid19-data, covid-19,covid-api, nuget-package
+    </PackageTags>
+    <Copyright>Copyright 2020</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\nuget\readme.txt" PackagePath="readme.txt" Pack="true" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,115 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Models\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Archiv\CountryDetailPage.xaml.cs" />
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Archiv\CountryDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\NewItemPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Montserrat-Black.ttf" />
+    <None Remove="Resources\Montserrat-ExtraBold.ttf" />
+    <None Remove="Resources\Montserrat-Light.ttf" />
+    <None Remove="Resources\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Montserrat-Thin.ttf" />
+    <None Remove="Resources\Montserrat.zip" />
+    <None Remove="Resources\Roboto-Light.ttf" />
+    <None Remove="Resources\Roboto.zip" />
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Models\HomeMenuItem.cs" />
+    <Compile Include="Models\MenuItemType.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Montserrat-Black.ttf" />
+    <EmbeddedResource Include="Resources\Montserrat-ExtraBold.ttf" />
+    <EmbeddedResource Include="Resources\Montserrat-Light.ttf" />
+    <EmbeddedResource Include="Resources\Montserrat-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Montserrat-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Montserrat-Thin.ttf" />
+    <EmbeddedResource Include="Resources\Roboto-Light.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1080" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\040 Projects\Covid19Tracker.NET-master\src\Covid19Tracker.NET\Covid19Tracker.NET.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DashboardPage.xaml.cs">
+      <DependentUpon>DashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CountryDetailPage.xaml.cs">
+      <DependentUpon>CountryDetailPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\DefaultSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\DefaultTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\ExplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\ImplicitStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\SmallDeviceSizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Archiv\" />
+    <Folder Include="Assets\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="CovidASH.Styles.LightTheme"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CovidASH.Styles"
+    Source="DefaultTheme.xaml">
+
+    <x:String x:Key="ViewMode">Light</x:String>
+
+    <!--<Color x:Key="primaryColor">#FAFAFA</Color>-->
+    <Color x:Key="primaryColor">#F3F3F3</Color>
+    <Color x:Key="primaryColorTransparent">#99FAFAFA</Color>
+    <Color x:Key="primaryColorLight">#ffffff</Color>
+    <Color x:Key="primaryColorDark">#E9E9E7</Color>
+
+    <Color x:Key="secondaryColor">#263238</Color>
+    <Color x:Key="secondaryColorTransparent">#33263238</Color>
+    <Color x:Key="secondaryColorLight">#4f5b62</Color>
+    <Color x:Key="secondaryColorDark">#000a12</Color>
+
+    <Color x:Key="primaryTextColor">#000a19</Color>
+    <Color x:Key="primaryTextColorLight">#000a12</Color>
+    <Color x:Key="primaryTextColorDark">#000c15</Color>
+    <Color x:Key="primaryTextColorTransparent">#33111a12</Color>
+    <Color x:Key="primaryTextColorLightTransparent">#42224459</Color>
+    <Color x:Key="primaryTextColorDarkTransparent">#22000000</Color>
+
+    <Color x:Key="secondaryTextColor">#D9D9D9</Color>
+
+    <!--  AccentColors 700% Lime  -->
+    <Color x:Key="accentColor">#DD8B0000</Color>
+    <Color x:Key="accentColorLight">#e4ff54</Color>
+    <Color x:Key="accentColorDark">#79B700</Color>
+
+    <OnPlatform x:Key="primaryShadowColor" x:TypeArguments="Color">
+        <On Platform="UWP" Value="#99224459" />
+        <On Platform="Android" Value="#99224459" />
+        <On Platform="iOS" Value="#99224459" />
+    </OnPlatform>
+    <Color x:Key="errorColor">#ff1111</Color>
+    <Color x:Key="errorTextColor">#ffffff</Color>
+    <Color x:Key="navigationPrimaryColor">#008AF7</Color>
+    <Color x:Key="navigationPrimaryColorTransparent">#2196F3</Color>
+    <Color x:Key="navigationSecondaryColor">#0063B0</Color>
+    <Color x:Key="navigationTextColor">#FAFAFA</Color>
+    <Color x:Key="navigationTextColorTransparent">#AAFAFAFA</Color>
+
+    <Color x:Key="menuSelectedBackgroundPrimary">#FF7043</Color>
+
+    <Color x:Key="Gray-000">#ffffff</Color>
+    <Color x:Key="Gray-100">#f6f7f8</Color>
+    <Color x:Key="Gray-200">#ebecef</Color>
+    <Color x:Key="Gray-300">#ced2d9</Color>
+    <Color x:Key="Gray-400">#b2b8c2</Color>
+    <Color x:Key="Gray-500">#959eac</Color>
+    <Color x:Key="Gray-600">#788396</Color>
+    <Color x:Key="Gray-700">#606a7b</Color>
+    <Color x:Key="Gray-800">#4a515e</Color>
+    <Color x:Key="Gray-900">#333942</Color>
+    <Color x:Key="Gray-999">#000000</Color>
+
+    <!--#region File Image sources-->
+    <OnPlatform x:Key="ic_sort_down" x:TypeArguments="FileImageSource">
+        <OnPlatform.Platforms>
+            <On Platform="UWP" Value="ic_sort_down_black.png" />
+            <On Platform="iOS" Value="ic_sort_down_black.png" />
+            <On Platform="Android" Value="ic_sort_down_black.png" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <OnPlatform x:Key="ic_sort_up" x:TypeArguments="FileImageSource">
+        <OnPlatform.Platforms>
+            <On Platform="UWP" Value="ic_sort_up_black.png" />
+            <On Platform="iOS" Value="ic_sort_up_black.png" />
+            <On Platform="Android" Value="ic_sort_up_black.png" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <!--#endregion File Image sources-->
+    <!--<Style TargetType="Button">
+        <Setter Property="Opacity" Value="1" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BorderColor" Value="{x:DynamicResource primaryTextColor}" />
+        <Setter Property="BackgroundColor" Value="{x:DynamicResource navigationPrimaryColor}" />
+        <Setter Property="TextColor" Value="{x:DynamicResource secondaryTextColor}" />
+        <Setter Property="FontSize" Value="{x:DynamicResource BodyFontSize}" />
+        <Setter Property="FontFamily" Value="{x:DynamicResource RegularFontFamily}" />
+        <Setter Property="HeightRequest" Value="{x:DynamicResource DefaultButtonHeight}" />
+        <Setter Property="Margin" Value="{x:DynamicResource LayoutMargin}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="Visual" Value="Material" />
+    </Style>-->
+</ResourceDictionary>

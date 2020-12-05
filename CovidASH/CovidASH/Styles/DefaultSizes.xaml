@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="CovidASH.Styles.DefaultSizes"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <OnIdiom
+        x:Key="H1FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="96"
+        Phone="96"
+        Tablet="28" />
+
+    <OnIdiom
+        x:Key="H2FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="60"
+        Phone="60"
+        Tablet="22" />
+
+    <OnIdiom
+        x:Key="H3FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="48"
+        Phone="48"
+        Tablet="18" />
+    <OnIdiom
+        x:Key="H4FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="34"
+        Phone="34"
+        Tablet="18" />
+
+    <OnIdiom
+        x:Key="H5FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="24"
+        Phone="24"
+        Tablet="18" />
+
+    <OnIdiom
+        x:Key="H6FontSize"
+        x:TypeArguments="x:Double"
+        Desktop="20"
+        Phone="20"
+        Tablet="18" />
+
+    <OnIdiom
+        x:Key="BodyFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="16"
+        Phone="16"
+        Tablet="16" />
+
+    <OnIdiom
+        x:Key="SmallFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="14"
+        Phone="12"
+        Tablet="14" />
+
+    <OnIdiom
+        x:Key="MicroFontSize"
+        x:TypeArguments="x:Double"
+        Desktop="12"
+        Phone="10"
+        Tablet="12" />
+
+    <OnIdiom
+        x:Key="PagePadding"
+        x:TypeArguments="Thickness"
+        Desktop="0"
+        Phone="0"
+        Tablet="0" />
+
+    <OnIdiom
+        x:Key="LayoutPadding"
+        x:TypeArguments="Thickness"
+        Desktop="8"
+        Phone="4"
+        Tablet="8" />
+
+    <OnIdiom
+        x:Key="LayoutMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8,4"
+        Phone="4,2"
+        Tablet="8,4" />
+
+    <OnIdiom
+        x:Key="LayoutSpacing"
+        x:TypeArguments="x:Double"
+        Desktop="8"
+        Phone="4"
+        Tablet="8" />
+
+    <OnIdiom
+        x:Key="BorderWidth"
+        x:TypeArguments="x:Double"
+        Desktop="0.5"
+        Phone="1"
+        Tablet="0.5" />
+
+    <OnIdiom
+        x:Key="TextElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8,4"
+        Phone="4,2"
+        Tablet="8,4" />
+
+    <OnIdiom
+        x:Key="HeaderTextElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="2,4,2,2"
+        Phone="2,2,2,2"
+        Tablet="2,4,2,2" />
+
+    <OnIdiom
+        x:Key="DefaultButtonHeight"
+        x:TypeArguments="x:Double"
+        Desktop="36"
+        Phone="36"
+        Tablet="36" />
+
+    <OnIdiom
+        x:Key="DefaultTextElementHeight"
+        x:TypeArguments="x:Double"
+        Desktop="36"
+        Phone="36"
+        Tablet="36" />
+
+    <OnIdiom
+        x:Key="DefaultCornerRadius"
+        x:TypeArguments="x:Double"
+        Desktop="2"
+        Phone="2"
+        Tablet="2" />
+
+    <OnIdiom
+        x:Key="MaximumDropDownHeight"
+        x:TypeArguments="x:Double"
+        Desktop="36"
+        Phone="36"
+        Tablet="36" />
+
+    <OnIdiom
+        x:Key="DefaultDropDownWidth"
+        x:TypeArguments="x:Double"
+        Desktop="320"
+        Phone="320"
+        Tablet="450" />
+    <!--<OnIdiom
+        x:Key="HeaderLabelElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="2,4,2,4"
+        Phone="10,2,10,0"
+        Tablet="4,8,8,4" />-->
+
+    <!--<OnIdiom
+        x:Key="HeaderedTextElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8,4,8,8"
+        Phone="4,2,4,4"
+        Tablet="8,4,8,8" />-->
+
+    <!--<OnIdiom
+        x:Key="ActionElementMargin"
+        x:TypeArguments="Thickness"
+        Desktop="8,4"
+        Phone="4"
+        Tablet="8" />
+
+    <OnIdiom
+        x:Key="ActionElementPadding"
+        x:TypeArguments="Thickness"
+        Desktop="8,4"
+        Phone="4"
+        Tablet="8" />-->
+
+    <OnIdiom
+        x:Key="CollectionImageSize"
+        x:TypeArguments="x:Double"
+        Desktop="200"
+        Phone="100"
+        Tablet="130" />
+
+    <OnIdiom
+        x:Key="ListViewHighlightBoxSize"
+        x:TypeArguments="x:Double"
+        Desktop="150"
+        Phone="100"
+        Tablet="150" />
+
+    <OnIdiom
+        x:Key="CardIndicatorWidth"
+        x:TypeArguments="GridLength"
+        Desktop="8"
+        Phone="8"
+        Tablet="8" />
+
+</ResourceDictionary>

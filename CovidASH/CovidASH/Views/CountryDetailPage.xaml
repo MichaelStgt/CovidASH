@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CovidASH.Views.CountryDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:theming="clr-namespace:CovidASH.Styles"
+    xmlns:viewmodel="clr-namespace:CovidASH.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:CountryDetailViewModel"
+    Navigation="{x:Binding Navigation}"
+    mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="ChangeTheme"
+            Command="{x:Static theming:ThemeSettings.SwitchThemeModeCommand}"
+            Text="Change Theme">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.Platforms>
+                        <On Platform="UWP" Value="ic_brightness_medium_white_48dp.png" />
+                        <On Platform="iOS" Value="ic_brightness_medium_white_24pt.png" />
+                        <On Platform="Android" Value="ic_brightness_medium_white_24dp.png" />
+                    </OnPlatform.Platforms>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources />
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Region Informational Header  -->
+                <Frame
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Population" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Population, StringFormat='{0:N0}'}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Continent" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Continent}" />
+                        <Image
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="3"
+                            Grid.ColumnSpan="1"
+                            HeightRequest="20"
+                            Opacity="0.8"
+                            Source="{x:Binding Country.CountryInfo.FlagUrl}"
+                            WidthRequest="30" />
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.ColumnSpan="4"
+                            Margin="8,2,8,2"
+                            FontSize="{x:DynamicResource MicroFontSize}"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"
+                            LineBreakMode="NoWrap">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Last Updated: " />
+                                    <Span Text="{Binding Country.Updated, Converter={x:StaticResource DateToStringConverter}}" />
+                                    <Span Text=", " />
+                                    <Span Text="{Binding Country.Updated.TimeOfDay, StringFormat='{}{0:hh\\:mm}'}" />
+
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Informational Header  -->
+
+                <!--  Region Cases  -->
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Total Cases" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Cases, StringFormat='{0:N0}'}" />
+                        <Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="0"
+                            BackgroundColor="{x:DynamicResource primaryColorDark}"
+                            Opacity="0.9" />
+
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="8,8,8,2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Today" />
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="8,2,8,8"
+                            FontSize="{x:DynamicResource H6FontSize}"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.TodayCases, StringFormat='{0:N0}'}" />
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Cases  -->
+
+                <!--  Region Deaths  -->
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Total Deaths" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="2"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Deaths, StringFormat='{0:N0}'}" />
+                        <Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="0"
+                            BackgroundColor="{x:DynamicResource accentColor}"
+                            Opacity="0.9" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="8,8,8,2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Today"
+                            TextColor="{x:DynamicResource navigationTextColor}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="8,2,8,8"
+                            FontSize="{x:DynamicResource H6FontSize}"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.TodayDeaths, StringFormat='{0:N0}'}"
+                            TextColor="{x:DynamicResource navigationTextColor}" />
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Deaths  -->
+
+                <!--  Region Recovered  -->
+                <Frame
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Total Recovered" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="2"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Recovered, StringFormat='{0:N0}'}" />
+                        <Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="0"
+                            BackgroundColor="{x:DynamicResource primaryColorDark}"
+                            Opacity="0.9" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="8,8,8,2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Today" />
+                        <!--  TextColor="{x:DynamicResource navigationTextColor}"  -->
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="8,2,8,8"
+                            FontSize="{x:DynamicResource H6FontSize}"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.TodayRecovered, StringFormat='{0:N0}'}" />
+                        <!--  TextColor="{x:DynamicResource navigationTextColor}"  -->
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Recovered  -->
+
+                <!--  Region Active  -->
+                <Frame
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Total Active" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="2"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Active, StringFormat='{0:N0}'}" />
+                        <Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="0"
+                            BackgroundColor="{x:DynamicResource primaryColorDark}"
+                            Opacity="0.9" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="8,8,8,2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Critical" />
+                        <!--  TextColor="{x:DynamicResource navigationTextColor}"  -->
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="8,2,8,8"
+                            FontSize="{x:DynamicResource H6FontSize}"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Critical, StringFormat='{0:N0}'}" />
+                        <!--  TextColor="{x:DynamicResource navigationTextColor}"  -->
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Active  -->
+
+                <!--  Region Tests  -->
+                <Frame
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <!--<RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />-->
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Tests" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="2"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.Tests, StringFormat='{0:N0}'}" />
+                        <!--<Frame
+                            Grid.Row="2"
+                            Grid.RowSpan="2"
+                            Margin="0"
+                            BackgroundColor="{x:DynamicResource primaryColorDark}"
+                            Opacity="0.9" />-->
+                        <!--<Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="8,8,8,2"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Today"
+                            TextColor="{x:DynamicResource navigationTextColor}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="8,2,8,8"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            FontSize="{x:DynamicResource H6FontSize}"
+                            Text="(na)"
+                            TextColor="{x:DynamicResource navigationTextColor}" />-->
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Tests  -->
+
+                <!--  Region Cases per 1 Million  -->
+                <Frame
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Cases per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.CasesPerOneMillion, StringFormat='{0:N0}'}" />
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Cases per 1 Million  -->
+
+
+                <!--  Region Deaths per 1 Million  -->
+                <Frame
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Deaths per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.DeathsPerOneMillion, StringFormat='{0:N0}'}" />
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Deaths per 1 Million  -->
+
+                <!--  Region Recovered per 1 Million  -->
+                <Frame
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Recovered per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.RecoveredPerOneMillion, StringFormat='{0:N0}'}" />
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Recovered per 1 Million  -->
+
+                <!--  Region Active per 1 Million  -->
+                <Frame
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Active per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.ActivePerOneMillion, StringFormat='{0:N0}'}" />
+
+
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Active per 1 Million  -->
+
+                <!--  Region Tests per 1 Million  -->
+                <Frame
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Tests per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.TestsPerOneMillion, StringFormat='{0:N0}'}" />
+
+
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Active per 1 Million  -->
+                <!--  Region Critical per 1 Million  -->
+                <Frame
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Style="{x:DynamicResource TileWrapper}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource HeaderLabelStyle}"
+                            Text="Critical per 1 Million" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Style="{x:DynamicResource TileValueLabelStyle}"
+                            Text="{Binding Country.CriticalPerOneMillion, StringFormat='{0:N0}'}" />
+
+                    </Grid>
+                </Frame>
+                <!--  EndRegion Active per 1 Million  -->
+
+
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
